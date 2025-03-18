@@ -11,6 +11,6 @@ public class AutomobileController {
     
     @GetMapping
     public ResponseEntity<String> getAllCars() {
-        return ResponseEntity.ok("ataaaa");
+        return ResponseEntity.ok("Hello, world!");
     }
 }
