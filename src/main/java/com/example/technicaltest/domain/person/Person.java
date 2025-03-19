@@ -1,9 +1,16 @@
 package com.example.technicaltest.domain.person;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.technicaltest.domain.vehicle.Vehicle;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,11 +24,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of="personId")
 public class Person {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private String person_id;
+    private String personId;
     
     private String name;
 
@@ -34,6 +41,9 @@ public class Person {
     private String email;
 
     private String cellphone;
+
+    @OneToMany(mappedBy = "person")
+    private List<Vehicle> vehicle = new ArrayList<>();
 
     public Person(RequestPerson requestPerson) {
         this.name = requestPerson.name();
