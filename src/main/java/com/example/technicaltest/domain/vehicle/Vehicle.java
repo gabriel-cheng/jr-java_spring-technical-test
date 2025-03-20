@@ -2,6 +2,7 @@ package com.example.technicaltest.domain.vehicle;
 
 import com.example.technicaltest.domain.person.Person;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of="vehicleId")
 public class Vehicle {
+    
     @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name="vehicleid")
     private String vehicleId;
 
     private String brand;
@@ -37,7 +40,7 @@ public class Vehicle {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "personId")
+    @JoinColumn(name = "personid")
     private Person person;
 
     public Vehicle(RequestVehicle requestVehicle) {
