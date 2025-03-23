@@ -56,12 +56,10 @@ public class PersonController {
         return ResponseEntity.ok("New person created!");
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delePerson(@RequestParam String id) {
-        // personRepository.deleteById(id);
-        System.out.println(id);
+    @DeleteMapping
+    public ResponseEntity<String> deletePerson(@RequestParam String id) {
+        personRepository.deleteById(id);
 
-
-        return ResponseEntity.ok("Person successfully deleted!");
+        return ResponseEntity.ok("Person successfully deleted!");   
     }
 }
