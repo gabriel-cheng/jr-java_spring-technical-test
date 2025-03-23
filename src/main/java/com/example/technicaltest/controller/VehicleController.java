@@ -19,9 +19,9 @@ public class VehicleController {
     private VehicleRepository vehicleRepository;
 
     @GetMapping
-    public ResponseEntity getAllVehicles() {
+    public ResponseEntity<String> getAllVehicles() {
         List<Vehicle> allVehicles = vehicleRepository.findAll();
 
-        return ResponseEntity.ok(allVehicles);
+        return ResponseEntity.ok("Ok");
     }
 }

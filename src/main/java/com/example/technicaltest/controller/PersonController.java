@@ -56,10 +56,16 @@ public class PersonController {
         return ResponseEntity.ok("New person created!");
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deletePerson(@RequestParam String id) {
-        personRepository.deleteById(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePerson(@PathVariable String id) {
+        Optional<Person> personToDelete = personRepository.findById(id);
 
-        return ResponseEntity.ok("Person successfully deleted!");   
+        if(personToDelete.isPresent()) {
+            personRepository.deleteById(id);
+
+            return ResponseEntity.ok("Person deleted successfully!");
+        } 
+
+        return ResponseEntity.ok("Person not found!");
     }
 }
