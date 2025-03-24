@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.technicaltest.domain.vehicle.Vehicle;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,8 +45,9 @@ public class Person {
 
     private String cellphone;
 
-    @OneToMany(mappedBy = "person")
-    private List<Vehicle> vehicle = new ArrayList<>();
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"person"})
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     public Person(RequestPerson requestPerson) {
         this.name = requestPerson.name();

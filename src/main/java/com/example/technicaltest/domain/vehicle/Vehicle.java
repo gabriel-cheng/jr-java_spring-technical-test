@@ -1,6 +1,7 @@
 package com.example.technicaltest.domain.vehicle;
 
 import com.example.technicaltest.domain.person.Person;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,6 +42,7 @@ public class Vehicle {
 
     @ManyToOne
     @JoinColumn(name = "personid")
+    @JsonIgnoreProperties({"vehicles"})
     private Person person;
 
     public Vehicle(RequestVehicle requestVehicle) {
@@ -49,6 +51,5 @@ public class Vehicle {
         this.color = requestVehicle.color();
         this.plate = requestVehicle.plate();
         this.price = requestVehicle.price();
-        this.person = requestVehicle.person();
     }
 }
